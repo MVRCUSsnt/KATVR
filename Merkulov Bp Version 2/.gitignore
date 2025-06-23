@@ -1,0 +1,27 @@
+﻿# IDE settings
+.idea/
+.vs/
+*.user
+*.suo
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.pdb
+
+# Rider
+*.sln.iml
+
+# Logs
+*.log
+Logs/
+*.csv
+
+# Mac system files
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
