@@ -6,7 +6,7 @@
     <Application.Resources>
         
 
-        <!-- ваш стиль Button без изменений -->
+        
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="#e0e0e0" />
             <Setter Property="Background" Value="#272a34" />
@@ -34,24 +34,24 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Тёмный стиль для TabControl -->
+        
         <Style TargetType="TabControl">
             <Setter Property="Background" Value="#1a1a1a" />
             <Setter Property="BorderBrush" Value="#232323" />
             <Setter Property="Foreground" Value="#bfc6cd" />
-            <!-- чтобы вкладки не обрезались -->
+            
             <Setter Property="ClipToBounds" Value="False" />
         </Style>
 
-        <!-- Стиль для TabItem -->
+        
         <Style TargetType="TabItem">
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="#bfc6cd" />
             <Setter Property="Background" Value="#232323" />
-            <!-- скругления по-прежнему 9,9,0,0 -->
+            
             <Setter Property="Padding" Value="30,12" />
-            <!-- убрали правый отступ, чтобы не уезжало за границу -->
+            
             <Setter Property="Margin" Value="8,0,0,0" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Cursor" Value="Hand" />
@@ -73,7 +73,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <!-- чтобы скругление рисовалось поверх соседних табов -->
+                                
                                 <Setter Property="Panel.ZIndex" Value="1" />
                                 <Setter TargetName="Bd" Property="Background" Value="#232b32" />
                                 <Setter Property="Foreground" Value="#fff" />

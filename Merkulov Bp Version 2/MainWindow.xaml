@@ -25,6 +25,7 @@
             <TabItem Header="Logger" Background="#1a1a1a" Foreground="#FFF">
                 <Grid>
                     <Button Name="btnStart" Content="Start" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Button Name="btnReset" Content="Reset" Click="btnReset_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Button Name="btnStop" Content="Stop" Click="btnStop_Click" IsEnabled="False" HorizontalAlignment="Right" VerticalAlignment="Top"/>
                     <Label Name="lblStatus" Content="Logger is not active" 
                            HorizontalAlignment="Left" Margin="24,78,0,0" VerticalAlignment="Top" Width="320"
@@ -41,7 +42,7 @@
                         <TextBlock Name="txtJumpCount" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
                         <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
                             <TextBlock Text="Average Heart Rate:" VerticalAlignment="Center" Foreground="#bbb" FontSize="15"/>
-                            <TextBox Name="txtAvgHR" Width="54" Margin="8,0,0,0" FontSize="15" Foreground="#0ae" Background="#222" BorderBrush="#444"/>
+                            <TextBox Name="txtAvgHR" Width="60" Margin="8,0,0,0" FontSize="15" Foreground="#0ae" Background="#222" BorderBrush="#444" TextAlignment="Center" VerticalContentAlignment="Center" />
                             <Button Content="Recalculate" Click="BtnRecalcCalories_Click" Margin="8,0,0,0"
                                     Width="110" Height="28"/>
                         </StackPanel>

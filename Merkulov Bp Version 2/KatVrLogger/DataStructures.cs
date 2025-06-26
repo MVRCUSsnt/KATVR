@@ -22,7 +22,7 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
         public float x, y, z, w;
     }
 
-    // DeviceData и TreadMillData (пример, можно расширить если надо)
+   
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct DeviceData
     {

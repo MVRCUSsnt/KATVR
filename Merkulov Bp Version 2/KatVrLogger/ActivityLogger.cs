@@ -303,7 +303,7 @@ public class ActivityLogger
     {
         if (!File.Exists(summaryFilePath))
         {
-            // Если файла нет, создаём с заголовком
+            
             using (var writer = new StreamWriter(summaryFilePath, false))
             {
                 writer.WriteLine("DateTime;TotalCalories;Duration(s);ReadableDuration;AvgSpeed(km/h);Distance(m);Steps;StrideDistance(m);jumpCount;CaloriesByHR");
@@ -332,4 +332,27 @@ public class ActivityLogger
         else
             return 447.593f + (9.247f * WeightKg) + (3.098f * HeightCm) - (4.330f * Age);
     }
+    
+    public void ResetSession()
+    {
+       
+        distanceTraveled = 0f;
+        stepCount = 0;
+        totalCalories = 0f;
+        elapsedTime = 0f;
+        lastLogTime = 0f;
+        currentPosition = new Vector3();
+        jumpCount = 0;
+        lastLeftGround = false;
+        lastRightGround = false;
+        airborneTimer = 0f;
+        wasBothFeetOff = false;
+        lastEvent = "";
+        averageHR = null;
+        caloriesByHR = null;
+
+        // логически новая сессия
+        sessionStartTime = DateTime.Now;
+    }
+
 }

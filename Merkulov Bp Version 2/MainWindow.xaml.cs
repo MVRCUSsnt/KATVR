@@ -17,7 +17,7 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
         private DispatcherTimer updateTimer;
         private List<SessionStat> allStats = new List<SessionStat>();
         private List<SessionStat> filteredStats = new List<SessionStat>();
-        private string period = "Day"; // значение по умолчанию
+        private string period = "Day";
 
         public MainWindow()
         {
@@ -31,7 +31,7 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
 
             // Загрузка статистики
             cbMetric.SelectedIndex = 0;
-            cbPeriod.SelectedIndex = 0; // Day по умолчанию
+            cbPeriod.SelectedIndex = 0;
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", "kat_summary_v2.csv");
             if (File.Exists(path))
             {
@@ -239,6 +239,23 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
             model.Series.Add(series);
             plotView.Model = model;
         }
+        
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            logger.ResetSession();
+            
+            txtSessionDate.Text = $"Date and Time: {logger.SessionStartTime}";
+            txtCalories.Text = $"Calories (BMR): 0.00";
+            txtCaloriesByHR.Text = "Calories (by HR): —";
+            txtDuration.Text = $"Duration: 00:00 (0.00 sec)";
+            txtAvgSpeed.Text = $"Average Speed: 0.00 km/h";
+            txtDistance.Text = $"Distance: 0.00 m";
+            txtSteps.Text = $"Steps: 0";
+            txtJumpCount.Text = $"Jumps this session: 0";
+            txtAvgHR.Text = ""; 
+            lblStatus.Content = "Session reset. Data cleared on screen.";
+        }
+
 
         // ---------- ВСПОМОГАТЕЛЬНЫЙ КЛАСС ДЛЯ СТАТИСТИКИ ----------
         public class SessionStat
