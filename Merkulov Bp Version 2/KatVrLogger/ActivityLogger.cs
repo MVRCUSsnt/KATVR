@@ -130,6 +130,7 @@ public class ActivityLogger
         RecalcCaloriesByHR(); // пересчёт калорий по пульсу (если введён)
         AppendSessionSummary();
         Console.WriteLine("Logger stopped. Data has been saved.");
+        
     }
 
     private void LogLoop()

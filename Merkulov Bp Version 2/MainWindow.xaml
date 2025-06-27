@@ -2,50 +2,112 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:oxy="http://oxyplot.org/wpf"
-        Title="KAT VR Logger" Height="660" Width="980"
+        Title="KAT VR Logger" Height="700" Width="1100"
         Background="#1a1a1a" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Foreground" Value="#fff"/>
-            <Setter Property="Background" Value="#32353f"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Foreground" Value="#fff" />
+            <Setter Property="Background" Value="#32353f" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="BorderThickness" Value="0,0,0,2" />
         </Style>
     </Window.Resources>
     <Grid>
         <TabControl Background="#1a1a1a" BorderBrush="#32353f" FontSize="16"
                     BorderThickness="1"
                     Margin="12"
-                    Padding="8"
-                    
-            
-                    >
+                    Padding="8">
             <!-- ЛОГГЕР -->
             <TabItem Header="Logger" Background="#1a1a1a" Foreground="#FFF">
                 <Grid>
-                    <Button Name="btnStart" Content="Start" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <Button Name="btnReset" Content="Reset" Click="btnReset_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Button Name="btnStop" Content="Stop" Click="btnStop_Click" IsEnabled="False" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                    <Label Name="lblStatus" Content="Logger is not active" 
-                           HorizontalAlignment="Left" Margin="24,78,0,0" VerticalAlignment="Top" Width="320"
-                           Foreground="#BEE" FontSize="14" Background="#222" Padding="5,2,5,2" BorderThickness="0"
-                           />
+                    <Button Name="btnStart" Content="Start" Click="btnStart_Click" HorizontalAlignment="Left"
+                            VerticalAlignment="Top" />
+                    <Button Name="btnReset" Content="Reset" Click="btnReset_Click" HorizontalAlignment="Center"
+                            VerticalAlignment="Top" />
+                    <Button Name="btnStop" Content="Stop" Click="btnStop_Click" IsEnabled="False"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    
+                    <StackPanel Orientation="Horizontal" Margin="24,78,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <Ellipse Name="ellipseStatus" Width="16" Height="16" Fill="Red" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Label Name="lblStatus"
+                               Content="Logger is not active"
+                               Foreground="#BEE"
+                               FontSize="14"
+                               Background="#222"
+                               Padding="5,2,5,2"
+                               BorderThickness="0"
+                               Width="300"
+                               VerticalAlignment="Center"/>
+                    </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="24,138,0,0" HorizontalAlignment="Left">
-                        <TextBlock Name="txtSessionDate" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtCalories" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtCaloriesByHR" Foreground="#95e1d3" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtDuration" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtAvgSpeed" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtDistance" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtSteps" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
-                        <TextBlock Name="txtJumpCount" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0"/>
+                        <TextBlock Name="txtSessionDate" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtCalories" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtCaloriesByHR" Foreground="#95e1d3" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtDuration" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtAvgSpeed" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtDistance" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtSteps" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+                        <TextBlock Name="txtJumpCount" Foreground="#bfc6cd" FontSize="15" Margin="0,3,0,0" />
+
+                        <!-- Average Heart Rate строка -->
                         <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
-                            <TextBlock Text="Average Heart Rate:" VerticalAlignment="Center" Foreground="#bbb" FontSize="15"/>
-                            <TextBox Name="txtAvgHR" Width="60" Margin="8,0,0,0" FontSize="15" Foreground="#0ae" Background="#222" BorderBrush="#444" TextAlignment="Center" VerticalContentAlignment="Center" />
-                            <Button Content="Recalculate" Click="BtnRecalcCalories_Click" Margin="8,0,0,0"
-                                    Width="110" Height="28"/>
+                            <TextBlock Text="Average Heart Rate:" VerticalAlignment="Center" Foreground="#bbb"
+                                       FontSize="15" />
+                            <TextBox Name="txtAvgHR" Width="60" Margin="8,0,0,0" FontSize="15" Foreground="#0ae"
+                                     Background="#222" BorderBrush="#444" TextAlignment="Center"
+                                     VerticalContentAlignment="Center" />
+                            <Button Content="Recalculate" Click="BtnRecalcCalories_Click" Margin="8,0,0,0" Width="110"
+                                    Height="28" />
                         </StackPanel>
+
+                        <!-- Блок параметров пользователя -->
+                        <Border BorderBrush="#444" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,12,0,0"
+                                Background="#181818">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="80" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Weight (kg):" Foreground="#bbb"
+                                           FontSize="15" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="txtWeight" Width="60" FontSize="15"
+                                         Margin="5,2,0,2" Foreground="#0ae" Background="#222" BorderBrush="#444"
+                                         TextAlignment="Center" VerticalContentAlignment="Center" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Height (cm):" Foreground="#bbb"
+                                           FontSize="15" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="txtHeight" Width="60" FontSize="15"
+                                         Margin="5,2,0,2" Foreground="#0ae" Background="#222" BorderBrush="#444"
+                                         TextAlignment="Center" VerticalContentAlignment="Center" />
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Age:" Foreground="#bbb" FontSize="15"
+                                           VerticalAlignment="Center" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="txtAge" Width="60" FontSize="15"
+                                         Margin="5,2,0,2" Foreground="#0ae" Background="#222" BorderBrush="#444"
+                                         TextAlignment="Center" VerticalContentAlignment="Center" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Gender:" Foreground="#bbb" FontSize="15"
+                                           VerticalAlignment="Center" />
+                                <ComboBox Grid.Row="3" Grid.Column="1" Name="cbGender" Width="60" FontSize="15"
+                                          Margin="5,2,0,2">
+                                    <ComboBoxItem>M</ComboBoxItem>
+                                    <ComboBoxItem>F</ComboBoxItem>
+                                </ComboBox>
+
+                                <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Apply"
+                                        Click="BtnApplyUserParams_Click" Width="100" Height="26" Margin="0,10,0,0"
+                                        HorizontalAlignment="Center" />
+                            </Grid>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -54,22 +116,26 @@
             <TabItem Header="Statistics" Background="#1a1a1a" Foreground="#FFF">
                 <Grid Margin="0,0,0,0">
                     <StackPanel>
-                        <TextBlock Text="KAT VR Session Statistics" Foreground="White" FontWeight="Bold" FontSize="22"/>
-                        
+                        <TextBlock Text="KAT VR Session Statistics" Foreground="White" FontWeight="Bold" FontSize="22" />
+
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <TextBlock Text="Period:" FontSize="16" Foreground="#FFF" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <ComboBox Name="cbPeriod" Width="140" Margin="0,0,0,0" SelectionChanged="cbPeriod_SelectionChanged">
+                            <TextBlock Text="Period:" FontSize="16" Foreground="#FFF" VerticalAlignment="Center"
+                                       Margin="0,0,8,0" />
+                            <ComboBox Name="cbPeriod" Width="140" Margin="0,0,0,0"
+                                      SelectionChanged="cbPeriod_SelectionChanged">
                                 <ComboBoxItem>Day</ComboBoxItem>
                                 <ComboBoxItem>Week</ComboBoxItem>
                                 <ComboBoxItem>Month</ComboBoxItem>
                                 <ComboBoxItem>Year</ComboBoxItem>
                                 <ComboBoxItem>All time</ComboBoxItem>
                             </ComboBox>
-                            <TextBlock Name="txtPeriodSummary" FontSize="14" Margin="18,0,0,0" Foreground="#7be9be" VerticalAlignment="Center"/>
+                            <TextBlock Name="txtPeriodSummary" FontSize="14" Margin="18,0,0,0" Foreground="#7be9be"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                            <TextBlock Text="Chart:" Foreground="White" FontSize="16" Margin="0,0,10,0"/>
-                            <ComboBox Name="cbMetric" Width="200" FontSize="15" SelectionChanged="cbMetric_SelectionChanged">
+                            <TextBlock Text="Chart:" Foreground="White" FontSize="16" Margin="0,0,10,0" />
+                            <ComboBox Name="cbMetric" Width="200" FontSize="15"
+                                      SelectionChanged="cbMetric_SelectionChanged">
                                 <ComboBoxItem>Calories (BMR)</ComboBoxItem>
                                 <ComboBoxItem>Calories (by HR)</ComboBoxItem>
                                 <ComboBoxItem>Average Speed</ComboBoxItem>
@@ -77,21 +143,22 @@
                                 <ComboBoxItem>Jumps</ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
-                        <oxy:PlotView Name="plotView" Height="220" Background="#232323" Margin="0,0,0,10"/>
+                        <oxy:PlotView Name="plotView" Height="220" Background="#232323" Margin="0,0,0,10" />
                         <DataGrid Name="dgStats" Margin="0,10,0,0" Height="250"
                                   AutoGenerateColumns="False"
                                   RowBackground="#232323" AlternatingRowBackground="#181818"
                                   Foreground="#fff" Background="#232323" FontSize="16"
                                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="140"/>
-                                <DataGridTextColumn Header="Calories (BMR)" Binding="{Binding Calories}" Width="100"/>
-                                <DataGridTextColumn Header="Calories (by HR)" Binding="{Binding CaloriesByHR}" Width="130"/>
-                                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="140"/>
-                                <DataGridTextColumn Header="Average Speed" Binding="{Binding AvgSpeed}" Width="90"/>
-                                <DataGridTextColumn Header="Distance (m)" Binding="{Binding Distance}" Width="100"/>
-                                <DataGridTextColumn Header="Steps" Binding="{Binding Steps}" Width="80"/>
-                                <DataGridTextColumn Header="Jumps" Binding="{Binding Jumps}" Width="80"/>
+                                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="140" />
+                                <DataGridTextColumn Header="Calories (BMR)" Binding="{Binding Calories}" Width="100" />
+                                <DataGridTextColumn Header="Calories (by HR)" Binding="{Binding CaloriesByHR}"
+                                                    Width="130" />
+                                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="140" />
+                                <DataGridTextColumn Header="Average Speed" Binding="{Binding AvgSpeed}" Width="90" />
+                                <DataGridTextColumn Header="Distance (m)" Binding="{Binding Distance}" Width="100" />
+                                <DataGridTextColumn Header="Steps" Binding="{Binding Steps}" Width="80" />
+                                <DataGridTextColumn Header="Jumps" Binding="{Binding Jumps}" Width="80" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>

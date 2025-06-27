@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -22,8 +23,14 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
         public MainWindow()
         {
             InitializeComponent();
+            
             logger = new ActivityLogger();
-
+             
+            txtWeight.Text = logger.WeightKg.ToString("0");
+            txtHeight.Text = logger.HeightCm.ToString("0");
+            txtAge.Text = logger.Age.ToString();
+            cbGender.SelectedIndex = logger.IsMale ? 0 : 1;
+            
             updateTimer = new DispatcherTimer();
             updateTimer.Interval = TimeSpan.FromMilliseconds(500);
             updateTimer.Tick += UpdateUi;
@@ -47,6 +54,7 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
             logger.StartLogging();
             btnStart.IsEnabled = false;
             btnStop.IsEnabled = true;
+            ellipseStatus.Fill = new SolidColorBrush(Colors.LimeGreen);
             lblStatus.Content = "Logger started. Data is being recorded..";
         }
 
@@ -55,6 +63,7 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
             logger.StopLogging();
             btnStart.IsEnabled = true;
             btnStop.IsEnabled = false;
+            ellipseStatus.Fill = new SolidColorBrush(Colors.Red);
             lblStatus.Content = "Logger stopped. Data has been saved.";
             logger.RecalcCaloriesByHR();
             logger.UpdateLastSessionCaloriesByHR(logger.CaloriesByHR);
@@ -76,6 +85,15 @@ namespace Merkulov_Bp_Version_2.KatVrLogger
             if (btnStop.IsEnabled)
                 logger.StopLogging();
             base.OnClosing(e);
+        }
+        
+        private void BtnApplyUserParams_Click(object sender, RoutedEventArgs e)
+        {
+            if (float.TryParse(txtWeight.Text, out float weight)) logger.WeightKg = weight;
+            if (float.TryParse(txtHeight.Text, out float height)) logger.HeightCm = height;
+            if (int.TryParse(txtAge.Text, out int age)) logger.Age = age;
+            logger.IsMale = (cbGender.SelectedIndex == 0); // 0 = Male, 1 = Female
+            lblStatus.Content = "User parameters updated!";
         }
 
         private void UpdateUi(object sender, EventArgs e)
